@@ -3,23 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    
+
     <!-- PWA Configuration -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#4CAF50" />
-    
+
     <!-- iOS/iPad specific -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Mini Paint" />
     <link rel="apple-touch-icon" href="/icon-192.svg" />
-    
+
     <!-- Android/Chrome -->
     <meta name="mobile-web-app-capable" content="yes" />
-    
+
     <!-- App Description -->
     <meta name="description" content="A fun paint app for toddlers and kids on tablets" />
-    
+
     <title>🎨 Mini Paint</title>
   </head>
   <body>
@@ -58,7 +58,7 @@
 
     <canvas id="canvas"></canvas>
     <script type="module" src="/src/main.ts"></script>
-    
+
     <!-- Service Worker Registration -->
     <script>
       if ('serviceWorker' in navigator) {
