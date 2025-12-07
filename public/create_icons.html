@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate Icons</title>
+</head>
+<body>
+  <canvas id="canvas192" width="192" height="192"></canvas>
+  <canvas id="canvas512" width="512" height="512"></canvas>
+  <script>
+    function createIcon(canvas, size) {
+      const ctx = canvas.getContext('2d');
+      
+      // Background
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#FF6B6B');
+      gradient.addColorStop(0.5, '#4ECDC4');
+      gradient.addColorStop(1, '#45B7D1');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, size, size);
+      
+      // Paint brush emoji effect
+      ctx.font = `${size * 0.6}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('🎨', size / 2, size / 2);
+      
+      return canvas.toDataURL('image/png');
+    }
+    
+    // Create and download icons
+    const icon192 = createIcon(document.getElementById('canvas192'), 192);
+    const icon512 = createIcon(document.getElementById('canvas512'), 512);
+    
+    // Create download links
+    const link192 = document.createElement('a');
+    link192.download = 'icon-192.png';
+    link192.href = icon192;
+    link192.click();
+    
+    setTimeout(() => {
+      const link512 = document.createElement('a');
+      link512.download = 'icon-512.png';
+      link512.href = icon512;
+      link512.click();
+    }, 100);
+  </script>
+</body>
+</html>

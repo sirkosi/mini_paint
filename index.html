@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#4CAF50" />
+    
+    <!-- iOS/iPad specific -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mini Paint" />
+    <link rel="apple-touch-icon" href="/icon-192.svg" />
+    
+    <!-- Android/Chrome -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- App Description -->
+    <meta name="description" content="A fun paint app for toddlers and kids on tablets" />
+    
+    <title>🎨 Mini Paint</title>
+  </head>
+  <body>
+    <div class="toolbar">
+      <button class="color-picker-btn" id="colorPickerBtn" title="Color Picker">🎨</button>
+
+      <div class="separator"></div>
+
+      <div class="size-control">
+        <span style="font-size: 11px;">🖌️</span>
+        <input type="range" id="sizeSlider" min="5" max="80" value="25">
+        <div class="brush-preview" id="brushPreview"></div>
+      </div>
+
+      <div class="separator"></div>
+
+      <button class="tool-btn active" id="brushBtn" title="Round Brush">⚫</button>
+      <button class="tool-btn" id="starBtn" title="Star Stamp">⭐</button>
+      <button class="tool-btn" id="heartBtn" title="Heart Stamp">❤️</button>
+
+      <div class="separator"></div>
+
+      <button class="tool-btn" id="clearBtn" title="Clear Canvas">🗑️</button>
+    </div>
+
+    <!-- Color Picker Modal -->
+    <div class="color-picker-modal" id="colorPickerModal">
+      <div class="color-picker-content">
+        <div class="color-picker-header">
+          <h3>🎨 Choose a Color</h3>
+          <button class="close-btn" id="closePickerBtn">✕</button>
+        </div>
+        <div class="color-grid" id="colorGrid"></div>
+      </div>
+    </div>
+
+    <canvas id="canvas"></canvas>
+    <script type="module" src="/src/main.ts"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('Service Worker registered:', registration.scope);
+            })
+            .catch((error) => {
+              console.log('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
