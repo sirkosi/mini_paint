@@ -4,21 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <!-- PWA Configuration -->
-    <link rel="manifest" href="/manifest.json" />
+    <!-- PWA Configuration - paths will be set by script below -->
+    <link rel="manifest" id="manifest-placeholder" href="" />
     <meta name="theme-color" content="#4CAF50" />
 
     <!-- iOS/iPad specific -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Mini Paint" />
-    <link rel="apple-touch-icon" href="/icon-192.svg" />
+    <link rel="apple-touch-icon" id="apple-icon-placeholder" href="" />
 
     <!-- Android/Chrome -->
     <meta name="mobile-web-app-capable" content="yes" />
 
     <!-- App Description -->
     <meta name="description" content="A fun paint app for toddlers and kids on tablets" />
+
+    <!-- Set correct paths for PWA files based on base path -->
+    <script>
+      // Get base path from the built assets
+      const basePath = document.currentScript.src ? new URL('.', new URL(document.currentScript.src).href).pathname.replace(/\/$/, '') : '';
+      const actualBase = basePath || window.location.pathname.replace(/\/[^/]*$/, '') || '';
+      
+      // Set manifest path
+      document.getElementById('manifest-placeholder').href = actualBase + '/manifest.json';
+      // Set apple touch icon path
+      document.getElementById('apple-icon-placeholder').href = actualBase + '/icon-192.svg';
+    </script>
 
     <title>🎨 Mini Paint</title>
   </head>
