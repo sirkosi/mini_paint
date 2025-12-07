@@ -25,7 +25,7 @@
       // Get base path from the built assets
       const basePath = document.currentScript.src ? new URL('.', new URL(document.currentScript.src).href).pathname.replace(/\/$/, '') : '';
       const actualBase = basePath || window.location.pathname.replace(/\/[^/]*$/, '') || '';
-      
+
       // Set manifest path
       document.getElementById('manifest-placeholder').href = actualBase + '/manifest.json';
       // Set apple touch icon path
