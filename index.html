@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <!-- PWA Configuration -->
-    <link rel="manifest" href="./manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#4CAF50" />
 
     <!-- iOS/iPad specific -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Mini Paint" />
-    <link rel="apple-touch-icon" href="./icon-192.svg" />
+    <link rel="apple-touch-icon" href="/icon-192.svg" />
 
     <!-- Android/Chrome -->
     <meta name="mobile-web-app-capable" content="yes" />
@@ -63,8 +63,10 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          // Use relative path to work with base path in vite.config.ts
-          const swPath = new URL('./sw.js', document.baseURI).href;
+          // Get the base path from the document to work with GitHub Pages
+          const base = document.querySelector('script[src*="/assets/"]')?.src.match(/^(.*?)\/assets/)?.[1] || '';
+          const swPath = base ? base + '/sw.js' : '/sw.js';
+
           navigator.serviceWorker.register(swPath)
             .then((registration) => {
               console.log('Service Worker registered:', registration.scope);
