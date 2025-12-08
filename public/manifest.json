@@ -4,6 +4,7 @@
   "description": "A fun paint app for toddlers and kids on tablets",
   "start_url": "./",
   "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone", "minimal-ui"],
   "background_color": "#ffffff",
   "theme_color": "#4CAF50",
   "orientation": "any",
