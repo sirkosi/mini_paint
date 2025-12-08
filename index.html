@@ -29,8 +29,11 @@
       const basePath = document.currentScript.src ? new URL('.', new URL(document.currentScript.src).href).pathname.replace(/\/$/, '') : '';
       const actualBase = basePath || window.location.pathname.replace(/\/[^/]*$/, '') || '';
 
-      // Set manifest path
-      document.getElementById('manifest-placeholder').href = actualBase + '/manifest.json';
+      // Add version/timestamp to manifest to prevent caching issues
+      const manifestVersion = Date.now();
+      
+      // Set manifest path with cache buster
+      document.getElementById('manifest-placeholder').href = actualBase + '/manifest.json?v=' + manifestVersion;
       // Set apple touch icon path
       document.getElementById('apple-icon-placeholder').href = actualBase + '/icon-192.svg';
     </script>
@@ -85,6 +88,23 @@
           navigator.serviceWorker.register(swPath)
             .then((registration) => {
               console.log('Service Worker registered:', registration.scope);
+              
+              // Check for updates every time the page loads
+              registration.update();
+              
+              // Listen for updates
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                console.log('New Service Worker found, installing...');
+                
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    console.log('New content available, please refresh.');
+                    // Auto-reload to get new content
+                    window.location.reload();
+                  }
+                });
+              });
             })
             .catch((error) => {
               console.log('Service Worker registration failed:', error);

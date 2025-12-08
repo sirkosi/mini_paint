@@ -3,7 +3,7 @@
  * Provides offline functionality and caching
  */
 
-const CACHE_NAME = 'mini-paint-v1';
+const CACHE_NAME = 'mini-paint-v2'; // Increment version to force cache update
 const urlsToCache = [
   './',
   './index.html',
@@ -49,6 +49,12 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   // Skip non-http(s) requests (like chrome-extension://)
   if (!event.request.url.startsWith('http')) {
+    return;
+  }
+
+  // Don't cache manifest.json - always fetch fresh
+  if (event.request.url.includes('manifest.json')) {
+    event.respondWith(fetch(event.request));
     return;
   }
 
