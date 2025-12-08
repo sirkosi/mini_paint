@@ -2,8 +2,9 @@
   "name": "Mini Paint",
   "short_name": "Mini Paint",
   "description": "A fun paint app for toddlers and kids on tablets",
-  "start_url": "/",
-  "display": "standalone",
+  "start_url": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
   "background_color": "#ffffff",
   "theme_color": "#4CAF50",
   "icons": [
