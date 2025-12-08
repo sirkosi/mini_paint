@@ -34,8 +34,8 @@
 
       // Set manifest path with cache buster
       document.getElementById('manifest-placeholder').href = actualBase + '/manifest.json?v=' + manifestVersion;
-      // Set apple touch icon path (PNG for better iOS support)
-      document.getElementById('apple-icon-placeholder').href = actualBase + '/icon-192.png';
+      // Set apple touch icon path (180x180 is iOS standard)
+      document.getElementById('apple-icon-placeholder').href = actualBase + '/icon-180x180.png';
     </script>
 
     <title>🎨 Mini Paint</title>
